@@ -5,6 +5,14 @@ import java.util.Date;
 
 
 public class Plan {
+	@Override
+	public String toString() {
+		return "Plan [id=" + id + ", user_id=" + user_id + ", name=" + name
+				+ ", content=" + content + ", begin_time=" + begin_time
+				+ ", end_time=" + end_time + ", expire=" + expire + ", finish="
+				+ finish + ", punish_method=" + punish_method
+				+ ", punish_content=" + punish_content + "]";
+	}
 	private Integer id;
 	private Integer user_id;
 	private String name;

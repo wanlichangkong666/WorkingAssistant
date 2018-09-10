@@ -1,6 +1,11 @@
 package com.wang.pojo;
 
 public class User {
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", password=" + password + ", sensor_id="
+				+ sensor_id + ", admin=" + admin + "]";
+	}
 	private Integer id;
 	private String password;
 	private Integer sensor_id;

@@ -7,11 +7,11 @@ import com.wang.pojo.Plan;
 import com.wang.pojo.User;
 
 public interface UserMapper {
+	void addUser(User user);
+	void deleteUser(Integer id);
+	void updatePassword(User user);
+	List<User> selectAllUsers();
+	User selectUser(User user);
 	
-	User selectUser(Integer id,String password);
-	List<Plan> selectCurrentPlans(Integer id,Date end_time);
-	List<Plan> selectAllPlans(Integer id);
-	void addPlan(Plan plan);
-	void deletePlan(Integer id);
 
 }
