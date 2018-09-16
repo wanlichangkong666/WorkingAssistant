@@ -11,5 +11,6 @@ public interface PlanMapper {
 	void updatePlan(Plan plan);
 	Plan selectCurrentPlans(Plan plan);
 	List<Plan> selectAllPlans(Integer id);
+	Plan getWorkingUsers(List<Integer> user_ids);
 
 }
