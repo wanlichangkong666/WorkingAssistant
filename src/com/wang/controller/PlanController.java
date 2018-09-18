@@ -40,7 +40,7 @@ public class PlanController {
 		Plan result  = planService.getCurrentPlan(plan);
 		return result;
 	}
-	@RequestMapping(value = "/createPlan")
+	@RequestMapping(value = "/getAllPlans")
 	public @ResponseBody List<Plan> getAllPlans(@RequestBody String user_id) {
 		List<Plan> result = planService.getAllPlans(Integer.parseInt(user_id));
 		return result;
