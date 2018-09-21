@@ -51,22 +51,11 @@
 			</if>
 			<if test="begin_time!=null">
 				begin_time=#{begin_time},
-			</if>
-			<if test="end_time!=null">
-				end_time=#{end_time},
-			</if>
-			<if test="expire!=null">
-				expire=#{expire},
-			</if>
+			</if>			
 			<if test="finish!=null">
 				finish=#{finish},
 			</if>
-			<if test="punish_method!=null">
-				punish_method=#{punish_method},
-			</if>
-			<if test="punish_content!=null">
-				punish_content=#{punish_content},
-			</if>
+			
 		</set>
    </update>
 </mapper>

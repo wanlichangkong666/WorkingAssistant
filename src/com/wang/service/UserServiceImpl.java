@@ -22,8 +22,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void changePassword(User user) {
-		userMapper.updatePassword(user);
-		
+		userMapper.updateUser(user);
 	}
 
 	@Override
@@ -44,5 +43,13 @@ public class UserServiceImpl implements UserService{
 		return userMapper.selectAllUsers();
 	}
 
+
+
+	//串口数据处理部分
+	@Override
+	public String attend(User user) {
+		
+		return null;
+	}
 	
 }

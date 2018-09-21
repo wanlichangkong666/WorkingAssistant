@@ -10,7 +10,7 @@
 		delete from user
 		where id = #{id}
 	</delete>
-	<update id="updatePassword" parameterType="User">
+	<update id="updateUser" parameterType="User">
 		update user
 		<set>
 			<if test="id!=null">
@@ -19,8 +19,14 @@
 			<if test="password!=null">
 				password=#{password},
 			</if>
-			<if test="sensor_id!=null">
-				sensor_id=#{sensor_id},
+			<if test="sensor!=null">
+				sensor=#{sensor},
+			</if>
+			<if test="rfid!=null">
+				rfid=#{rfid},
+			</if>
+			<if test="attendence!=null">
+				attendence=#{attendence},
 			</if>
 			<if test="admin!=null">
 				admin=#{admin},
