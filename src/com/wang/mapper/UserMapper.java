@@ -11,7 +11,11 @@ public interface UserMapper {
 	void deleteUser(Integer id);
 	void updateUser(User user);
 	List<User> selectAllUsers();
+	List<User> selectAttendedUsers();
+	List<User> selectWorkingUsers();
 	User selectUser(User user);
+	User selectUserById(Integer id);
+	
 	
 
 }

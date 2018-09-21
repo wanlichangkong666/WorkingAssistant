@@ -33,9 +33,9 @@ public class PlanServiceImpl implements PlanService {
 	}
 
 	@Override
-	public Plan getCurrentPlan(Plan plan) {
+	public Plan getCurrentPlan(Integer id) {
 		
-		return planMapper.selectCurrentPlans(plan);
+		return planMapper.selectCurrentPlans(id);
 	}
 
 	@Override

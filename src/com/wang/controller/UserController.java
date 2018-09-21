@@ -40,6 +40,18 @@ public class UserController {
 		User result = userService.login(user);
 		return result;
 	}
+	@RequestMapping(value = "/attend")
+	public @ResponseBody String attend(@RequestBody String id) {
+		
+		String result = userService.attend(Integer.parseInt(id));
+		return result;
+	}
+	@RequestMapping(value = "/leave")
+	public @ResponseBody String leave(@RequestBody String id) {
+		
+		String result = userService.leave(Integer.parseInt(id));
+		return result;
+	}
 	@RequestMapping(value = "/changePassword")
 	public void changePassword(HttpServletResponse response, @RequestBody User user) {
 		userService.changePassword(user);

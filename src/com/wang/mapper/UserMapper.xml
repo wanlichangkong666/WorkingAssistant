@@ -3,8 +3,8 @@
 <mapper namespace="com.wang.mapper.UserMapper" >
 
 	<insert id="addUser" parameterType="User">
-		insert into user
-		values(#{id},#{password},#{sensor_id},#{admin})
+		insert into user (id,password,sensor,rfid,attendance,admin)
+		values(#{id},#{password},#{sensor},#{rfid},#{attendance},#{admin})
 	</insert>
 	<delete id="deleteUser" parameterType="Integer">
 		delete from user
@@ -25,8 +25,8 @@
 			<if test="rfid!=null">
 				rfid=#{rfid},
 			</if>
-			<if test="attendence!=null">
-				attendence=#{attendence},
+			<if test="attendance!=null">
+				attendance=#{attendance},
 			</if>
 			<if test="admin!=null">
 				admin=#{admin},
@@ -38,11 +38,32 @@
     select *
       from user
   </select>
+   <select id="selectAttendedUsers" resultType="User">
+    select *
+      from user
+      where attendance = 1
+  </select>
+   <select id="selectWorkingUsers" resultType="User" parameterType="String">
+    select *
+      from user
+      where attendance = 1
+      and sensor in 
+        <foreach collection="list" item="sensor" index="index"
+            open="(" close=")" separator=",">
+            #{sensor}
+            </foreach>
+      
+  </select>
     <select id="selectUser" resultType="User" parameterType="User" >
     select *
       from user
 	 where id = #{id}
 	 and password = #{password}
+  </select>
+   <select id="selectUserById" resultType="User" parameterType="Integer" >
+    select *
+      from user
+	 where id = #{id}
   </select>
   
 </mapper>

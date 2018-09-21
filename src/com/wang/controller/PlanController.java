@@ -36,8 +36,8 @@ public class PlanController {
 		planService.changePlan(plan);
 	}
 	@RequestMapping(value = "/getCurrentPlan")
-	public @ResponseBody Plan getCurrentPlan(@RequestBody Plan plan) {
-		Plan result  = planService.getCurrentPlan(plan);
+	public @ResponseBody Plan getCurrentPlan(@RequestBody String id) {
+		Plan result  = planService.getCurrentPlan(Integer.parseInt(id));
 		return result;
 	}
 	@RequestMapping(value = "/getAllPlans")

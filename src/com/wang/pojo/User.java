@@ -6,7 +6,7 @@ public class User {
 	private String password;
 	private String rfid;
 	private String sensor;
-	private Boolean attendence;
+	private Boolean attendance;
 	private Boolean admin;//true为管理员 false为普通用户
 	public Integer getId() {
 		return id;
@@ -33,11 +33,11 @@ public class User {
 	public void setSensor(String sensor) {
 		this.sensor = sensor;
 	}
-	public Boolean getAttendence() {
-		return attendence;
+	public Boolean getAttendance() {
+		return attendance;
 	}
-	public void setAttendence(Boolean attendence) {
-		this.attendence = attendence;
+	public void setAttendence(Boolean attendance) {
+		this.attendance = attendance;
 	}
 	public Boolean getAdmin() {
 		return admin;
@@ -48,7 +48,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", password=" + password + ", rfid=" + rfid
-				+ ", sensor=" + sensor + ", attendence=" + attendence
+				+ ", sensor=" + sensor + ", attendance=" + attendance
 				+ ", admin=" + admin + "]";
 	}
 

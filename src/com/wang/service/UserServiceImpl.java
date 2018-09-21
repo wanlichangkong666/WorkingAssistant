@@ -1,12 +1,18 @@
 package com.wang.service;
 
+import gnu.io.PortInUseException;
+
 import java.util.List;
+
+import javax.naming.spi.DirStateFactory.Result;
+import javax.swing.ListModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wang.mapper.UserMapper;
 import com.wang.pojo.User;
+import com.wang.serial.Rfid;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -47,9 +53,55 @@ public class UserServiceImpl implements UserService{
 
 	//串口数据处理部分
 	@Override
-	public String attend(User user) {
+	public String attend(Integer id) {
+		User user  = userMapper.selectUserById(id);
+		if(user.getAttendance())
+		{
+			Boolean result = false;
+			String rfid = user.getRfid();
+			try {
+				result = Rfid.validate(rfid);
+			} catch (PortInUseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(result == true)
+			return "success";
+		}
+		return "fail";
+	}
+
+	@Override
+	public String leave(Integer id) {
+		User user  = userMapper.selectUserById(id);
+		if(user.getAttendance()==false)
+		{
+			Boolean result = false;
+			String rfid = user.getRfid();
+			try {
+				result = Rfid.validate(rfid);
+			} catch (PortInUseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(result == true)
+			return "success";
+		}
+		return "fail";
+	}
+
+	@Override
+	public List<User> getAttendedUsers() {
+		List<User> users = userMapper.selectAttendedUsers();
+		return users;
 		
-		return null;
+	}
+
+	@Override
+	public List<User> getWorkingUsers() {
+		
+		List<User> users = userMapper.selectWorkingUsers();
+		return users;
 	}
 	
 }

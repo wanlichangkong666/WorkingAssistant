@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.wang.mapper.PlanMapper" >
 
-  <select id="selectCurrentPlans" resultType="Plan" parameterType="Plan" >
+  <select id="selectCurrentPlans" resultType="Plan" parameterType="Integer" >
     select *
       from plan
 	 where user_id = #{id}
-	 and NOW() &lt; end_time
+	 and finish = 0
   </select>
   
   <select id="selectAllPlans" resultType="Plan" parameterType="Integer" >
@@ -25,9 +25,7 @@
   </select>
   <insert id="addPlan" parameterType="Plan" >
     insert into plan 
-    values (#{id},#{user_id},#{name},#{content},#{begin_time},
-    #{end_time},#{expire},#{finish},#{punish_method},
-    #{punish_content}
+    values (#{id},#{user_id},#{name},#{content},#{begin_time},#{finish}
     )
   </insert>
    <delete id="deletePlan" parameterType="Integer">
