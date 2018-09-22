@@ -24,16 +24,38 @@ public class PlanController {
 	private PlanService planService;
 	
 	@RequestMapping(value = "/createPlan")
-	public void createPlan(@RequestBody Plan plan) {
-		planService.createPlan(plan);
+	public @ResponseBody String createPlan(@RequestBody Plan plan) {
+		try {
+			planService.createPlan(plan);
+			return "SUCCESS";
+		} catch (Exception e) {
+	
+			e.printStackTrace();
+		}
+		return "FAIL";
 	}
 	@RequestMapping(value = "/deletePlan")
-	public void deletePlan(@RequestBody String id) {
-		planService.deletePlan(Integer.parseInt(id));
+	public @ResponseBody String deletePlan(@RequestBody String id) {
+		try {
+			planService.deletePlan(Integer.parseInt(id));
+			return "SUCCESS";
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			
+		}
+		return "FAIL";
 	}
 	@RequestMapping(value = "/changePlan")
-	public void changePlan(@RequestBody Plan plan) {
-		planService.changePlan(plan);
+	public @ResponseBody String changePlan(@RequestBody Plan plan) {
+		try {
+			planService.changePlan(plan);
+			return "SUCCESS";
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+		}
+		return "FAIL";
 	}
 	@RequestMapping(value = "/getCurrentPlan")
 	public @ResponseBody Plan getCurrentPlan(@RequestBody String id) {

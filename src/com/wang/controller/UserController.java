@@ -53,21 +53,51 @@ public class UserController {
 		return result;
 	}
 	@RequestMapping(value = "/changePassword")
-	public void changePassword(HttpServletResponse response, @RequestBody User user) {
-		userService.changePassword(user);
+	public @ResponseBody String changePassword(HttpServletResponse response, @RequestBody User user) {
+		try {
+			userService.changePassword(user);
+			return "SUCCESS";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		    return "FAIL";
 	}
 	@RequestMapping(value = "/createUser")
-	public void createUser(HttpServletResponse response, @RequestBody User user) {
-		userService.createUser(user);
-		
+	public @ResponseBody String createUser(HttpServletResponse response, @RequestBody User user) {
+		try {
+			userService.createUser(user);
+			return "SUCCESS";
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return "FAIL";
 	}
 	@RequestMapping(value = "/deleteUser")
-	public void deleteUser(HttpServletResponse response, @RequestBody String id) {
-		userService.deleteUser(Integer.parseInt(id));
+	public @ResponseBody String deleteUser(HttpServletResponse response, @RequestBody String id) {
+		try {
+			userService.deleteUser(Integer.parseInt(id));
+			return "SUCCESS";
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return "FAIL";
 	}
 	@RequestMapping(value = "/getAllUsers")
-	public @ResponseBody List<User> login(HttpServletResponse response) {
+	public @ResponseBody List<User> getAllUsers(HttpServletResponse response) {
 		List<User> result = userService.getAllUsers();
+		return result;
+	}
+	@RequestMapping(value = "/getAttendedUsers")
+	public @ResponseBody List<User> getAttendedUsers(HttpServletResponse response) {
+		List<User> result = userService.getAttendedUsers();
+		return result;
+	}
+	@RequestMapping(value = "/getWorkingUsers")
+	public @ResponseBody List<User> getWorkingUsers(HttpServletResponse response) {
+		List<User> result = userService.getWorkingUsers();
 		return result;
 	}
 
