@@ -21,15 +21,16 @@ public class Rfid {
 	private static SerialPort port;
 	private static Boolean result = false;
 	//private static final String compare = "13660c3e";
-	private static String portName = "COM5";
+	private static String portName = "COM3";
 	private static int baudrate = 19200;
 	public static void validate(final String compare) throws PortInUseException {
 
 		//String finalData;
+		result = false;
 		port = SerialPortManager.openPort(portName, baudrate);
 		System.out.println(port);
 		String xunka = "0200000446529c03";
-		String fangchongtu = "0200000447044f03";
+		final String fangchongtu = "0200000447044f03";
 		SerialPortManager.addListener(port,
 				new SerialPortManager.DataAvailableListener() {
 
@@ -40,17 +41,21 @@ public class Rfid {
 							if (port == null) {
 								return;
 							} else {
-								// 璇诲彇涓插彛鏁版嵁
+								
 								data = SerialPortManager.readFromPort(port);				
 								String number = ByteUtils.byteArrayToHexString(data);
-								String card = number.substring(12);
-								System.out.println(card);
-								if (card.equals(compare)) {
+								if(number.equals("02000005460004004F03"))
+									SerialPortManager.sendToPort(port, ByteUtils.hexStr2Byte(fangchongtu));
+								else
+								{
+									String card = number.substring(12,20);
+									System.out.println(card);
+									if (card.equals(compare)) {
 								
 									    result = true;
 									    	
+									}
 								}
-
 							}
 						} catch (Exception e) {
 
@@ -62,9 +67,9 @@ public class Rfid {
 		
 	
 	});
-		SerialPortManager.sendToPort(port, ByteUtils.hexStr2Byte(xunka));
+		//发送寻卡帧和防冲突帧
+		SerialPortManager.sendToPort(port, ByteUtils.hexStr2Byte(xunka));		
 		
-		SerialPortManager.sendToPort(port, ByteUtils.hexStr2Byte(fangchongtu));
 		try {
 			Thread.currentThread();
 			Thread.sleep(1000);

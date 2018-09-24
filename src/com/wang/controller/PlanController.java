@@ -35,9 +35,9 @@ public class PlanController {
 		return "FAIL";
 	}
 	@RequestMapping(value = "/deletePlan")
-	public @ResponseBody String deletePlan(@RequestBody String id) {
+	public @ResponseBody String deletePlan(@RequestBody Plan plan) {
 		try {
-			planService.deletePlan(Integer.parseInt(id));
+			planService.deletePlan(plan.getId());
 			return "SUCCESS";
 		} catch (Exception e) {
 
@@ -58,14 +58,24 @@ public class PlanController {
 		return "FAIL";
 	}
 	@RequestMapping(value = "/getCurrentPlan")
-	public @ResponseBody Plan getCurrentPlan(@RequestBody String id) {
-		Plan result  = planService.getCurrentPlan(Integer.parseInt(id));
+	public @ResponseBody Plan getCurrentPlan(@RequestBody Plan plan) {
+		Plan result  = planService.getCurrentPlan(plan.getUser_id());
 		return result;
 	}
 	@RequestMapping(value = "/getAllPlans")
-	public @ResponseBody List<Plan> getAllPlans(@RequestBody String user_id) {
-		List<Plan> result = planService.getAllPlans(Integer.parseInt(user_id));
+	public @ResponseBody List<Plan> getAllPlans(@RequestBody Plan plan) {
+		List<Plan> result = planService.getAllPlans(plan.getUser_id());
 		return result;
 	}
-
+	@RequestMapping(value = "/finishPlan")
+	public @ResponseBody String finishPlan(@RequestBody Plan plan) {
+		try {
+			planService.finishPlan(plan.getId());
+			return "SUCCESS";
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+		}
+		return "FAIL";
+	}
 }

@@ -6,6 +6,7 @@ import com.wang.pojo.Plan;
 
 public interface PlanService {
 
+	public void finishPlan(Integer id);
 	public void createPlan(Plan plan);
 	public void deletePlan(Integer id);
 	public void changePlan(Plan plan);

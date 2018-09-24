@@ -33,15 +33,23 @@ public class PlanServiceImpl implements PlanService {
 	}
 
 	@Override
-	public Plan getCurrentPlan(Integer id) {
+	public Plan getCurrentPlan(Integer user_id) {
 		
-		return planMapper.selectCurrentPlans(id);
+		return planMapper.selectCurrentPlans(user_id);
 	}
 
 	@Override
 	public List<Plan> getAllPlans(Integer user_id) {
 
 		return planMapper.selectAllPlans(user_id);
+	}
+
+	@Override
+	public void finishPlan(Integer id) {
+		Plan plan = planMapper.selectPlanById(id);
+		plan.setFinish(true);
+		planMapper.updatePlan(plan);
+		
 	}
 
 }

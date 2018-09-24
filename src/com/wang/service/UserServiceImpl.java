@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.wang.mapper.UserMapper;
 import com.wang.pojo.User;
 import com.wang.serial.Rfid;
+import com.wang.serial.Sensor;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -57,7 +58,7 @@ public class UserServiceImpl implements UserService{
 		User user  = userMapper.selectUserById(id);
 		if(user.getAttendance())
 		{
-			Boolean result = false;
+			
 			String rfid = user.getRfid();
 			try {
 				Rfid.validate(rfid);
@@ -65,10 +66,10 @@ public class UserServiceImpl implements UserService{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(result == true)
-			return "success";
+			if(Rfid.getResult() == true)
+			return "SUCCESS";
 		}
-		return "fail";
+		return "FAIL";
 	}
 
 	@Override
@@ -76,7 +77,7 @@ public class UserServiceImpl implements UserService{
 		User user  = userMapper.selectUserById(id);
 		if(user.getAttendance()==false)
 		{
-			Boolean result = false;
+			
 			String rfid = user.getRfid();
 			try {
 				 Rfid.validate(rfid);
@@ -84,10 +85,10 @@ public class UserServiceImpl implements UserService{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			if(result == true)
-			return "success";
+			if(Rfid.getResult() == true)
+			return "SUCCESS";
 		}
-		return "fail";
+		return "FAIL";
 	}
 
 	@Override
@@ -99,8 +100,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<User> getWorkingUsers() {
-		
-		List<User> users = userMapper.selectWorkingUsers();
+		List<String> sensors = Sensor.getDetectedSensor();
+		List<User> users = userMapper.selectWorkingUsers(sensors);
 		return users;
 	}
 	

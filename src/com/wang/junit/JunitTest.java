@@ -65,7 +65,9 @@ public class JunitTest {
 	public static void main(String args[])
 	{
 		try {
-			Sensor.getSensors();
+			//Sensor.getSensors();
+			Rfid.validate("13660C3E");
+			System.out.println(Rfid.getResult());
 		} catch (PortInUseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

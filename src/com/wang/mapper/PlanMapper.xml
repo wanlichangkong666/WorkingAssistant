@@ -5,14 +5,19 @@
   <select id="selectCurrentPlans" resultType="Plan" parameterType="Integer" >
     select *
       from plan
-	 where user_id = #{id}
+	 where user_id = #{user_id}
 	 and finish = 0
   </select>
   
   <select id="selectAllPlans" resultType="Plan" parameterType="Integer" >
     select *
       from plan
-     where user_id = #{id}
+     where user_id = #{user_id}
+  </select>
+   <select id="selectPlanById" resultType="Plan" parameterType="Integer" >
+    select *
+      from plan
+     where id = #{id}
   </select>
   <select id="getWorkingUsers" resultType="Plan" parameterType="Integer" >
     select user_id,name

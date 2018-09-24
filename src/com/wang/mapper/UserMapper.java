@@ -12,7 +12,7 @@ public interface UserMapper {
 	void updateUser(User user);
 	List<User> selectAllUsers();
 	List<User> selectAttendedUsers();
-	List<User> selectWorkingUsers();
+	List<User> selectWorkingUsers(List<String> sensors);
 	User selectUser(User user);
 	User selectUserById(Integer id);
 	

@@ -9,8 +9,9 @@ public interface PlanMapper {
 	void addPlan(Plan plan);
 	void deletePlan(Integer id);
 	void updatePlan(Plan plan);
-	Plan selectCurrentPlans(Integer id);
-	List<Plan> selectAllPlans(Integer id);
+	Plan selectPlanById(Integer id);
+	Plan selectCurrentPlans(Integer user_id);
+	List<Plan> selectAllPlans(Integer user_id);
 	Plan getWorkingUsers(List<Integer> user_ids);
 
 }

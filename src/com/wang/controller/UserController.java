@@ -41,15 +41,15 @@ public class UserController {
 		return result;
 	}
 	@RequestMapping(value = "/attend")
-	public @ResponseBody String attend(@RequestBody String id) {
+	public @ResponseBody String attend(@RequestBody User user) {
 		
-		String result = userService.attend(Integer.parseInt(id));
+		String result = userService.attend(user.getId());
 		return result;
 	}
 	@RequestMapping(value = "/leave")
-	public @ResponseBody String leave(@RequestBody String id) {
+	public @ResponseBody String leave(@RequestBody User user) {
 		
-		String result = userService.leave(Integer.parseInt(id));
+		String result = userService.leave(user.getId());
 		return result;
 	}
 	@RequestMapping(value = "/changePassword")
@@ -75,9 +75,9 @@ public class UserController {
 		return "FAIL";
 	}
 	@RequestMapping(value = "/deleteUser")
-	public @ResponseBody String deleteUser(HttpServletResponse response, @RequestBody String id) {
+	public @ResponseBody String deleteUser(HttpServletResponse response, @RequestBody User user) {
 		try {
-			userService.deleteUser(Integer.parseInt(id));
+			userService.deleteUser(user.getId());
 			return "SUCCESS";
 		} catch (Exception e) {
 			
