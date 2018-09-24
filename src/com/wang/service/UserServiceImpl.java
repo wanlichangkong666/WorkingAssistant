@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService{
 			Boolean result = false;
 			String rfid = user.getRfid();
 			try {
-				result = Rfid.validate(rfid);
+				Rfid.validate(rfid);
 			} catch (PortInUseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService{
 			Boolean result = false;
 			String rfid = user.getRfid();
 			try {
-				result = Rfid.validate(rfid);
+				 Rfid.validate(rfid);
 			} catch (PortInUseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
