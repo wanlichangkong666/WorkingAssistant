@@ -40,7 +40,7 @@ public class Sensor {
 		//sensors.add("B7A5");
 		//String finalData;
 		port = SerialPortManager.openPort(portName, baudrate);
-		System.out.println(port);
+		//System.out.println(port);
 		SerialPortManager.addListener(port,
 				new SerialPortManager.DataAvailableListener() {
 			    //private int counter = 0;
@@ -83,7 +83,7 @@ public class Sensor {
 										
 									}
 									
-									System.out.println(detectedSensor.size());
+									
 							
 								}
 								
