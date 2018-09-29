@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public String attend(Integer id) {
 		User user  = userMapper.selectUserById(id);
-		if(user.getAttendance())
+		if(!user.getAttendance())
 		{
 			
 			String rfid = user.getRfid();
@@ -67,7 +67,11 @@ public class UserServiceImpl implements UserService{
 				e.printStackTrace();
 			}
 			if(Rfid.getResult() == true)
-			return "SUCCESS";
+			{
+				user.setAttendence(true);
+				userMapper.updateUser(user);
+				return "SUCCESS";
+			}
 		}
 		return "FAIL";
 	}
@@ -75,7 +79,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public String leave(Integer id) {
 		User user  = userMapper.selectUserById(id);
-		if(user.getAttendance()==false)
+		if(user.getAttendance())
 		{
 			
 			String rfid = user.getRfid();
@@ -86,7 +90,11 @@ public class UserServiceImpl implements UserService{
 				e.printStackTrace();
 			}
 			if(Rfid.getResult() == true)
-			return "SUCCESS";
+			{
+				user.setAttendence(false);
+				userMapper.updateUser(user);
+				return "SUCCESS";
+			}
 		}
 		return "FAIL";
 	}

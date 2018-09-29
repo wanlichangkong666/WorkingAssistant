@@ -40,9 +40,7 @@
    <update id="updatePlan" parameterType="Plan">
    	update plan
    		<set>
-			<if test="id!=null">
-				id=#{id},
-			</if>
+			
 			<if test="user_id!=null">
 				user_id=#{user_id},
 			</if>
@@ -52,9 +50,7 @@
 			<if test="content!=null">
 				content=#{content},
 			</if>
-			<if test="begin_time!=null">
-				begin_time=#{begin_time},
-			</if>			
+			
 			<if test="finish!=null">
 				finish=#{finish},
 			</if>
